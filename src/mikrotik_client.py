@@ -150,7 +150,7 @@ class MikrotikClient:
         Ambil identity (nama) dari MikroTik.
 
         Returns:
-            String identity MikroTik (e.g., "ALE-RND").
+            String identity MikroTik (e.g., "MikroTik").
             Jika gagal, kembalikan "MikroTik".
         """
         self._ensure_connected()

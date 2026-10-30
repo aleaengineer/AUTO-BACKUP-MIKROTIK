@@ -34,7 +34,7 @@ devices:
     name: router1
 
     # IP atau hostname MikroTik
-    host: 192.168.99.31
+    host: 192.168.88.2
 
     # Username API (pastikan user ini punya akses API + read + write)
     username: ale

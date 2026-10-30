@@ -330,19 +330,19 @@ Mode: RUN (one-time backup)
 Backup semua device (2 device)
 
 ============================================================
-Memulai backup device: router1 (192.168.99.31)
+Memulai backup device: router1 (192.168.88.2)
 ============================================================
-[1/7] Connect ke MikroTik API 192.168.99.31:8728
+[1/7] Connect ke MikroTik API 192.168.88.2:8728
 [2/7] Membuat backup files di router
 [3/7] Connect FTP & download files
 [4/7] Simpan ke local storage
 [5/7] Upload ke Google Drive
 [6/7] Cleanup file di router
 [7/7] Apply retention policy
-Backup router1 (192.168.99.31) berhasil!
+Backup router1 (192.168.88.2) berhasil!
 
 ============================================================
-Memulai backup device: router2 (192.168.99.30)
+Memulai backup device: router2 (192.168.88.3)
 ============================================================
 ...
 
@@ -485,9 +485,9 @@ Nama file backup otomatis dibuat dengan format:
 ```
 
 Contoh:
-- MikroTik identity: `ALE-RND`
+- MikroTik identity: `MikroTik`
 - Tanggal: 30 Oktober 2026, 18:35:24
-- Nama file: `ALE-RND_Backup_30-10-2026_18-35-24.backup` dan `.rsc`
+- Nama file: `MikroTik_Backup_30-10-2026_18-35-24.backup` dan `.rsc`
 
 Identity diambil otomatis dari MikroTik (`/system/identity/print`). Jika identity mengandung spasi atau karakter khusus, akan otomatis di-sanitize (spasi → `_`, `/` → `-`).
 
@@ -501,15 +501,15 @@ Identity diambil otomatis dari MikroTik (`/system/identity/print`). Jika identit
 backups/
 ├── router1/
 │   ├── 2026-10-30/
-│   │   ├── ALE-RND_Backup_30-10-2026_18-35-24.backup
-│   │   └── ALE-RND_Backup_30-10-2026_18-35-24.rsc
+│   │   ├── MikroTik_Backup_30-10-2026_18-35-24.backup
+│   │   └── MikroTik_Backup_30-10-2026_18-35-24.rsc
 │   └── 2026-10-31/
-│       ├── ALE-RND_Backup_31-10-2026_02-00-00.backup
-│       └── ALE-RND_Backup_31-10-2026_02-00-00.rsc
+│       ├── MikroTik_Backup_31-10-2026_02-00-00.backup
+│       └── MikroTik_Backup_31-10-2026_02-00-00.rsc
 └── router2/
     └── 2026-10-30/
-        ├── SW-DISTRI-NOC_Backup_30-10-2026_18-35-41.backup
-        └── SW-DISTRI-NOC_Backup_30-10-2026_18-35-41.rsc
+        ├── MikroTik_Backup_30-10-2026_18-35-41.backup
+        └── MikroTik_Backup_30-10-2026_18-35-41.rsc
 ```
 
 ### Google Drive
@@ -518,12 +518,12 @@ backups/
 <folder_id>/
 ├── router1/
 │   └── 2026-10-30/
-│       ├── ALE-RND_Backup_30-10-2026_18-35-24.backup
-│       └── ALE-RND_Backup_30-10-2026_18-35-24.rsc
+│       ├── MikroTik_Backup_30-10-2026_18-35-24.backup
+│       └── MikroTik_Backup_30-10-2026_18-35-24.rsc
 └── router2/
     └── 2026-10-30/
-        ├── SW-DISTRI-NOC_Backup_30-10-2026_18-35-41.backup
-        └── SW-DISTRI-NOC_Backup_30-10-2026_18-35-41.rsc
+        ├── MikroTik_Backup_30-10-2026_18-35-41.backup
+        └── MikroTik_Backup_30-10-2026_18-35-41.rsc
 ```
 
 Setiap device punya subfolder sendiri, dan di dalamnya subfolder per tanggal. File backup dengan nama sama akan di-overwrite di Google Drive (update, bukan duplikat).

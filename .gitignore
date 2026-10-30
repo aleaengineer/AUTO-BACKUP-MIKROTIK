@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project secrets & config
+config.yaml
+config.local.yaml
+
+# Google Drive credentials
+credentials.json
+token.json
+token.pickle
+
+# Backup output
+backups/
+*.backup
+*.rsc
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

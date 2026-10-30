@@ -1,0 +1,131 @@
+# =============================================================
+# Auto Backup MikroTik Tool - Configuration File
+# =============================================================
+# Salin file ini menjadi config.yaml dan sesuaikan dengan
+# konfigurasi MikroTik Anda.
+#
+# Untuk nilai sensitif (password), bisa gunakan env var:
+#   password: ${MIKROTIK_PASSWORD}
+# Tool akan otomatis substitusi dari environment variable.
+# =============================================================
+
+# --- SCHEDULER (Jadwal Backup) ---
+schedule:
+  # Tipe schedule: "interval" atau "cron"
+  type: interval
+
+  # --- Untuk type=interval ---
+  # Backup setiap N menit/jam. Isi salah satu atau keduanya.
+  hours: 6
+  # minutes: 30
+
+  # --- Untuk type=cron ---
+  # Format cron: "minute hour day_of_month month day_of_week"
+  # Contoh: "0 2 * * *" = setiap hari jam 02:00
+  #         "0 */6 * * *" = setiap 6 jam
+  #         "0 0 * * 0" = setiap Minggu jam 00:00
+  # type: cron
+  # cron_expression: "0 2 * * *"
+
+
+# --- DEVICES (Daftar MikroTik) ---
+devices:
+  - # Nama device (untuk identifikasi di log dan folder backup)
+    name: router1
+
+    # IP atau hostname MikroTik
+    host: 192.168.99.31
+
+    # Username API (pastikan user ini punya akses API + read + write)
+    username: ale
+
+    # Password API (boleh kosong jika tidak ada password)
+    # Tips: gunakan env var untuk keamanan: ${MIKROTIK_PASSWORD}
+    password: "aleal3"
+
+    # Port API MikroTik (default: 8728, SSL: 8729)
+    api_port: 8728
+
+    # Port FTP MikroTik (default: 21)
+    ftp_port: 21
+
+    # Gunakan SSL untuk API connection (true/false)
+    use_ssl: false
+
+    # Verifikasi SSL certificate (set false jika self-signed)
+    ssl_verify: true
+
+    # Tipe backup yang dibuat: "backup" dan/atau "rsc"
+    # backup = file .backup (binary)
+    # rsc = file .rsc (export config text)
+    backup_types:
+      - backup
+      - rsc
+
+    # Hapus file backup dari router setelah download (true/false)
+    cleanup_router: true
+
+  # --- Tambah device lain di sini (copy-paste block di atas) ---
+  # - name: router2
+  #   host: 192.168.88.2
+  #   username: admin
+  #   password: ""
+  #   api_port: 8728
+  #   ftp_port: 21
+  #   use_ssl: false
+  #   ssl_verify: true
+  #   backup_types:
+  #     - backup
+  #     - rsc
+  #   cleanup_router: true
+
+
+# --- STORAGE (Penyimpanan Lokal) ---
+storage:
+  # Path folder untuk menyimpan backup lokal
+  # Bisa relative (terhadap config file) atau absolute
+  local_path: ./backups
+
+  # Retention: hapus backup lokal lebih tua dari N hari
+  # 0 = tidak hapus (simpan semua)
+  retention_days: 30
+
+
+# --- GOOGLE DRIVE (Upload ke Cloud) ---
+google_drive:
+  # Aktifkan upload ke Google Drive (true/false)
+  enabled: true
+
+  # Path ke credentials.json dari Google Cloud Console
+  # Lihat README untuk cara setup
+  credentials_file: credentials.json
+
+  # Path untuk menyimpan token OAuth2 (auto-generated setelah auth pertama)
+  token_file: token.json
+
+  # ID folder Google Drive tempat menyimpan backup
+  # Dapatkan dari URL Drive: https://drive.google.com/drive/folders/<FOLDER_ID>
+  folder_id: "1pHDA2K7Vg1PLNGwRygbCHk89pMFiIic5"
+
+  # Retention: hapus backup di Google Drive lebih tua dari N hari
+  # 0 = tidak hapus
+  retention_days: 90
+
+
+# --- LOGGING ---
+logging:
+  # Level log: DEBUG, INFO, WARNING, ERROR
+  level: INFO
+
+  # Log ke console (true/false)
+  console: true
+
+  # File log (relative terhadap config file atau absolute)
+  # Kosongkan jika tidak ingin log ke file
+  file: ./logs/backup.log
+
+  # Ukuran maksimum file log (MB) sebelum rotasi
+  max_size: 5
+
+  # Jumlah file rotasi yang disimpan
+  backup_count: 3
